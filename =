@@ -128,7 +128,7 @@ npmdoc-browserify-shim@0.0.1 /home/travis/build/npmdoc/node-npmdoc-browserify-sh
   ├─┬ stream-browserify@2.0.1 
   │ └─┬ readable-stream@2.2.6 
   │   └── isarray@1.0.0 
-  ├─┬ stream-http@2.6.3 
+  ├─┬ stream-http@2.7.0 
   │ ├── builtin-status-codes@3.0.0 
   │ ├─┬ readable-stream@2.2.6 
   │ │ └── isarray@1.0.0 
