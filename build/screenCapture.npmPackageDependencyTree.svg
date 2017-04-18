@@ -1,59 +1,62 @@
-<svg height="894" width="720" xmlns="http://www.w3.org/2000/svg">
-<rect height="894" fill="#555" width="720"></rect>
+<svg height="942" width="720" xmlns="http://www.w3.org/2000/svg">
+<rect height="942" fill="#555" width="720"></rect>
 <text fill="#7f7" font-family="Courier New" font-size="12" xml:space="preserve">
-<tspan x="10" y="26">├── UNMET PEER DEPENDENCY browserify@&gt;= 2.3</tspan>
-<tspan x="10" y="42">└─┬ browserify-shim@3.8.14 </tspan>
-<tspan x="10" y="58">  ├─┬ exposify@0.5.0 </tspan>
-<tspan x="10" y="74">  │ ├─┬ globo@1.1.0 </tspan>
-<tspan x="10" y="90">  │ │ ├─┬ accessory@1.1.0 </tspan>
-<tspan x="10" y="106">  │ │ │ ├── ap@0.2.0 </tspan>
-<tspan x="10" y="122">  │ │ │ ├── balanced-match@0.2.1 </tspan>
-<tspan x="10" y="138">  │ │ │ └── dot-parts@1.0.1 </tspan>
-<tspan x="10" y="154">  │ │ ├── is-defined@1.0.0 </tspan>
-<tspan x="10" y="170">  │ │ └── ternary@1.0.0 </tspan>
-<tspan x="10" y="186">  │ ├── map-obj@1.0.1 </tspan>
-<tspan x="10" y="202">  │ ├─┬ replace-requires@1.0.3 </tspan>
-<tspan x="10" y="218">  │ │ ├─┬ detective@4.1.1 </tspan>
-<tspan x="10" y="234">  │ │ │ ├── acorn@1.2.2 </tspan>
-<tspan x="10" y="250">  │ │ │ ├── defined@1.0.0 </tspan>
-<tspan x="10" y="266">  │ │ │ └─┬ escodegen@1.8.1 </tspan>
-<tspan x="10" y="282">  │ │ │   ├── esprima@2.7.3 </tspan>
-<tspan x="10" y="298">  │ │ │   ├── estraverse@1.9.3 </tspan>
-<tspan x="10" y="314">  │ │ │   ├── esutils@2.0.2 </tspan>
-<tspan x="10" y="330">  │ │ │   ├─┬ optionator@0.8.2 </tspan>
-<tspan x="10" y="346">  │ │ │   │ ├── deep-is@0.1.3 </tspan>
-<tspan x="10" y="362">  │ │ │   │ ├── fast-levenshtein@2.0.6 </tspan>
-<tspan x="10" y="378">  │ │ │   │ ├── levn@0.3.0 </tspan>
-<tspan x="10" y="394">  │ │ │   │ ├── prelude-ls@1.1.2 </tspan>
-<tspan x="10" y="410">  │ │ │   │ ├── type-check@0.3.2 </tspan>
-<tspan x="10" y="426">  │ │ │   │ └── wordwrap@1.0.0 </tspan>
-<tspan x="10" y="442">  │ │ │   └── source-map@0.2.0 </tspan>
-<tspan x="10" y="458">  │ │ ├─┬ has-require@1.2.2 </tspan>
-<tspan x="10" y="474">  │ │ │ └── escape-string-regexp@1.0.5 </tspan>
-<tspan x="10" y="490">  │ │ ├── patch-text@1.0.2 </tspan>
-<tspan x="10" y="506">  │ │ └── xtend@4.0.1 </tspan>
-<tspan x="10" y="522">  │ ├─┬ through2@0.4.2 </tspan>
-<tspan x="10" y="538">  │ │ ├─┬ readable-stream@1.0.34 </tspan>
-<tspan x="10" y="554">  │ │ │ ├── core-util-is@1.0.2 </tspan>
-<tspan x="10" y="570">  │ │ │ ├── inherits@2.0.3 </tspan>
-<tspan x="10" y="586">  │ │ │ ├── isarray@0.0.1 </tspan>
-<tspan x="10" y="602">  │ │ │ └── string_decoder@0.10.31 </tspan>
-<tspan x="10" y="618">  │ │ └─┬ xtend@2.1.2 </tspan>
-<tspan x="10" y="634">  │ │   └── object-keys@0.4.0 </tspan>
-<tspan x="10" y="650">  │ └─┬ transformify@0.1.2 </tspan>
-<tspan x="10" y="666">  │   └── readable-stream@1.1.14 </tspan>
-<tspan x="10" y="682">  ├─┬ mothership@0.2.0 </tspan>
-<tspan x="10" y="698">  │ └── find-parent-dir@0.3.0 </tspan>
-<tspan x="10" y="714">  ├─┬ rename-function-calls@0.1.1 </tspan>
-<tspan x="10" y="730">  │ └─┬ detective@3.1.0 </tspan>
-<tspan x="10" y="746">  │   ├─┬ escodegen@1.1.0 </tspan>
-<tspan x="10" y="762">  │   │ ├── esprima@1.0.4 </tspan>
-<tspan x="10" y="778">  │   │ ├── estraverse@1.5.1 </tspan>
-<tspan x="10" y="794">  │   │ ├── esutils@1.0.0 </tspan>
-<tspan x="10" y="810">  │   │ └─┬ source-map@0.1.43 </tspan>
-<tspan x="10" y="826">  │   │   └── amdefine@1.0.1 </tspan>
-<tspan x="10" y="842">  │   └── esprima-fb@3001.1.0-dev-harmony-fb </tspan>
-<tspan x="10" y="858">  ├── resolve@0.6.3 </tspan>
-<tspan x="10" y="874">  └── through@2.3.8</tspan>
+<tspan x="10" y="26">8 megabytes installed</tspan>
+<tspan x="10" y="42"></tspan>
+<tspan x="10" y="58">node_modules</tspan>
+<tspan x="10" y="74">├── UNMET PEER DEPENDENCY browserify@&gt;= 2.3</tspan>
+<tspan x="10" y="90">└─┬ browserify-shim@3.8.14 </tspan>
+<tspan x="10" y="106">  ├─┬ exposify@0.5.0 </tspan>
+<tspan x="10" y="122">  │ ├─┬ globo@1.1.0 </tspan>
+<tspan x="10" y="138">  │ │ ├─┬ accessory@1.1.0 </tspan>
+<tspan x="10" y="154">  │ │ │ ├── ap@0.2.0 </tspan>
+<tspan x="10" y="170">  │ │ │ ├── balanced-match@0.2.1 </tspan>
+<tspan x="10" y="186">  │ │ │ └── dot-parts@1.0.1 </tspan>
+<tspan x="10" y="202">  │ │ ├── is-defined@1.0.0 </tspan>
+<tspan x="10" y="218">  │ │ └── ternary@1.0.0 </tspan>
+<tspan x="10" y="234">  │ ├── map-obj@1.0.1 </tspan>
+<tspan x="10" y="250">  │ ├─┬ replace-requires@1.0.3 </tspan>
+<tspan x="10" y="266">  │ │ ├─┬ detective@4.1.1 </tspan>
+<tspan x="10" y="282">  │ │ │ ├── acorn@1.2.2 </tspan>
+<tspan x="10" y="298">  │ │ │ ├── defined@1.0.0 </tspan>
+<tspan x="10" y="314">  │ │ │ └─┬ escodegen@1.8.1 </tspan>
+<tspan x="10" y="330">  │ │ │   ├── esprima@2.7.3 </tspan>
+<tspan x="10" y="346">  │ │ │   ├── estraverse@1.9.3 </tspan>
+<tspan x="10" y="362">  │ │ │   ├── esutils@2.0.2 </tspan>
+<tspan x="10" y="378">  │ │ │   ├─┬ optionator@0.8.2 </tspan>
+<tspan x="10" y="394">  │ │ │   │ ├── deep-is@0.1.3 </tspan>
+<tspan x="10" y="410">  │ │ │   │ ├── fast-levenshtein@2.0.6 </tspan>
+<tspan x="10" y="426">  │ │ │   │ ├── levn@0.3.0 </tspan>
+<tspan x="10" y="442">  │ │ │   │ ├── prelude-ls@1.1.2 </tspan>
+<tspan x="10" y="458">  │ │ │   │ ├── type-check@0.3.2 </tspan>
+<tspan x="10" y="474">  │ │ │   │ └── wordwrap@1.0.0 </tspan>
+<tspan x="10" y="490">  │ │ │   └── source-map@0.2.0 </tspan>
+<tspan x="10" y="506">  │ │ ├─┬ has-require@1.2.2 </tspan>
+<tspan x="10" y="522">  │ │ │ └── escape-string-regexp@1.0.5 </tspan>
+<tspan x="10" y="538">  │ │ ├── patch-text@1.0.2 </tspan>
+<tspan x="10" y="554">  │ │ └── xtend@4.0.1 </tspan>
+<tspan x="10" y="570">  │ ├─┬ through2@0.4.2 </tspan>
+<tspan x="10" y="586">  │ │ ├─┬ readable-stream@1.0.34 </tspan>
+<tspan x="10" y="602">  │ │ │ ├── core-util-is@1.0.2 </tspan>
+<tspan x="10" y="618">  │ │ │ ├── inherits@2.0.3 </tspan>
+<tspan x="10" y="634">  │ │ │ ├── isarray@0.0.1 </tspan>
+<tspan x="10" y="650">  │ │ │ └── string_decoder@0.10.31 </tspan>
+<tspan x="10" y="666">  │ │ └─┬ xtend@2.1.2 </tspan>
+<tspan x="10" y="682">  │ │   └── object-keys@0.4.0 </tspan>
+<tspan x="10" y="698">  │ └─┬ transformify@0.1.2 </tspan>
+<tspan x="10" y="714">  │   └── readable-stream@1.1.14 </tspan>
+<tspan x="10" y="730">  ├─┬ mothership@0.2.0 </tspan>
+<tspan x="10" y="746">  │ └── find-parent-dir@0.3.0 </tspan>
+<tspan x="10" y="762">  ├─┬ rename-function-calls@0.1.1 </tspan>
+<tspan x="10" y="778">  │ └─┬ detective@3.1.0 </tspan>
+<tspan x="10" y="794">  │   ├─┬ escodegen@1.1.0 </tspan>
+<tspan x="10" y="810">  │   │ ├── esprima@1.0.4 </tspan>
+<tspan x="10" y="826">  │   │ ├── estraverse@1.5.1 </tspan>
+<tspan x="10" y="842">  │   │ ├── esutils@1.0.0 </tspan>
+<tspan x="10" y="858">  │   │ └─┬ source-map@0.1.43 </tspan>
+<tspan x="10" y="874">  │   │   └── amdefine@1.0.1 </tspan>
+<tspan x="10" y="890">  │   └── esprima-fb@3001.1.0-dev-harmony-fb </tspan>
+<tspan x="10" y="906">  ├── resolve@0.6.3 </tspan>
+<tspan x="10" y="922">  └── through@2.3.8</tspan>
 </text>
 </svg>

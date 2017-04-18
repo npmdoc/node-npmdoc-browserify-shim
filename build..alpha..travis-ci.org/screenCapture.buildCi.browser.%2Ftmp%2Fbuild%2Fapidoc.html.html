@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="https://github.com/thlorenz/browserify-shim#readme"
-
-    >browserify-shim (v3.8.14)</a>
+    <a href="https://github.com/thlorenz/browserify-shim#readme">browserify-shim (v3.8.14)</a>
 </h1>
 <h4>Makes CommonJS-incompatible modules browserifyable.</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.browserify-shim">module browserify-shim</a><ol>
 
@@ -183,7 +176,7 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function shim(file) {
-  var content = &#x27;&#x27;;
+  var content = '';
   var stream = through(write, end);
   return stream;
 
@@ -192,15 +185,15 @@
     var messages = [];
     resolveShims(file, messages, function (err, info) {
       if (err) {
-        stream.emit(&#x27;error&#x27;, err);
+        stream.emit('error', err);
         return stream.queue(null);
       }
 
-      debug(&#x27;&#x27;);
+      debug('');
       debug.inspect({ file: file, info: info, messages: messages });
 
       var eg = info.exposeGlobals;
-      if(eg &#x26;&#x26; Object.keys(eg)) {
+      if(eg &amp;&amp; Object.keys(eg)) {
         content = exposify.expose(eg, content);
       }
 
@@ -208,7 +201,7 @@
 
         // at this point we consider all remaining (not exposified) require statements to be invalid (why else are we shimming this
 )
-        content = rename(&#x27;require&#x27;, shimRequire, content);
+        content = rename('require', shimRequire, content);
 
         var transformed = wrap(content, info.shim, info.packageDir, info.browser)
         stream.queue(transformed);
@@ -254,11 +247,11 @@
       var conf = config[field];
 
       // normalize two possible formats:
-      //    &#x22;key&#x22;: &#x22;export,
-      //    &#x22;key&#x22;: { &#x22;exports&#x22;: &#x22;export&#x22; .. }
-      if (typeof conf === &#x27;string&#x27;) conf = { exports: conf };
+      //    "key": "export,
+      //    "key": { "exports": "export" .. }
+      if (typeof conf === 'string') conf = { exports: conf };
 
-      var exps = conf.exports &#x26;&#x26; conf.exports.length ? conf.exports.trim() : null;
+      var exps = conf.exports &amp;&amp; conf.exports.length ? conf.exports.trim() : null;
 
       acc[field.trim()] = {
           exports: exps
@@ -282,10 +275,10 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function resolveShims(file, messages, cb) {
   // find the package.json that defines browserify-shim config for this file
-  mothership(file, function (pack) { return !! pack[&#x27;browserify-shim&#x27;] }, function (err, res) {
+  mothership(file, function (pack) { return !! pack['browserify-shim'] }, function (err, res) {
     if (err) return cb(err);
 
-    if (!res || !res.pack) return cb(new Error(&#x27;Unable to find a browserify-shim config section in the package.json for &#x27; + file
+    if (!res || !res.pack) return cb(new Error('Unable to find a browserify-shim config section in the package.json for ' + file
 ));
 
     var pack       = res.pack;
@@ -303,7 +296,7 @@
         , shim               :  shimsByPath[file]
         , exposeGlobals      :  cached.exposeGlobals
         , browser            :  pack.browser
-        , &#x27;browserify-shim&#x27;  :  pack[&#x27;browserify-shim&#x27;]
+        , 'browserify-shim'  :  pack['browserify-shim']
         , dependencies       :  pack.dependencies
       });
     }
@@ -311,10 +304,10 @@
       try {
         pack = require(packFile);
 
-        var shimField = pack[&#x27;browserify-shim&#x27;];
+        var shimField = pack['browserify-shim'];
         if (!shimField) return cb(null, { package_json: packFile, shim: undefined });
 
-        var resolved = typeof shimField === &#x27;string&#x27;
+        var resolved = typeof shimField === 'string'
           ? resolveFromShimFile(packageDir, pack, shimField, messages)
           : resolveInlineShims(packageDir, pack, shimField, messages);
 
@@ -327,7 +320,7 @@
           , shim              :  shimsByPath[file]
           , exposeGlobals     :  resolved.exposeGlobals
           , browser           :  pack.browser
-          , &#x27;browserify-shim&#x27; :  pack[&#x27;browserify-shim&#x27;]
+          , 'browserify-shim' :  pack['browserify-shim']
           , dependencies      :  pack.dependencies
         });
 
@@ -390,15 +383,15 @@
     <li>example usage<pre class="apidocCodePre">...
     resolveShims(file, messages, function (err, info) {
 if (err) {
-  stream.emit(&#x27;error&#x27;, err);
+  stream.emit('error', err);
   return stream.queue(null);
 }
 
-debug(&#x27;&#x27;);
+debug('');
 debug.<span class="apidocCodeKeywordSpan">inspect</span>({ file: file, info: info, messages: messages });
 
 var eg = info.exposeGlobals;
-if(eg &#x26;&#x26; Object.keys(eg)) {
+if(eg &amp;&amp; Object.keys(eg)) {
   content = exposify.expose(eg, content);
 }
 
@@ -427,11 +420,11 @@ if (info.shim) {
       var conf = config[field];
 
       // normalize two possible formats:
-      //    &#x22;key&#x22;: &#x22;export,
-      //    &#x22;key&#x22;: { &#x22;exports&#x22;: &#x22;export&#x22; .. }
-      if (typeof conf === &#x27;string&#x27;) conf = { exports: conf };
+      //    "key": "export,
+      //    "key": { "exports": "export" .. }
+      if (typeof conf === 'string') conf = { exports: conf };
 
-      var exps = conf.exports &#x26;&#x26; conf.exports.length ? conf.exports.trim() : null;
+      var exps = conf.exports &amp;&amp; conf.exports.length ? conf.exports.trim() : null;
 
       acc[field.trim()] = {
           exports: exps
@@ -460,10 +453,10 @@ if (info.shim) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function resolveShims(file, messages, cb) {
   // find the package.json that defines browserify-shim config for this file
-  mothership(file, function (pack) { return !! pack[&#x27;browserify-shim&#x27;] }, function (err, res) {
+  mothership(file, function (pack) { return !! pack['browserify-shim'] }, function (err, res) {
     if (err) return cb(err);
 
-    if (!res || !res.pack) return cb(new Error(&#x27;Unable to find a browserify-shim config section in the package.json for &#x27; + file
+    if (!res || !res.pack) return cb(new Error('Unable to find a browserify-shim config section in the package.json for ' + file
 ));
 
     var pack       = res.pack;
@@ -481,7 +474,7 @@ if (info.shim) {
         , shim               :  shimsByPath[file]
         , exposeGlobals      :  cached.exposeGlobals
         , browser            :  pack.browser
-        , &#x27;browserify-shim&#x27;  :  pack[&#x27;browserify-shim&#x27;]
+        , 'browserify-shim'  :  pack['browserify-shim']
         , dependencies       :  pack.dependencies
       });
     }
@@ -489,10 +482,10 @@ if (info.shim) {
       try {
         pack = require(packFile);
 
-        var shimField = pack[&#x27;browserify-shim&#x27;];
+        var shimField = pack['browserify-shim'];
         if (!shimField) return cb(null, { package_json: packFile, shim: undefined });
 
-        var resolved = typeof shimField === &#x27;string&#x27;
+        var resolved = typeof shimField === 'string'
           ? resolveFromShimFile(packageDir, pack, shimField, messages)
           : resolveInlineShims(packageDir, pack, shimField, messages);
 
@@ -505,7 +498,7 @@ if (info.shim) {
           , shim              :  shimsByPath[file]
           , exposeGlobals     :  resolved.exposeGlobals
           , browser           :  pack.browser
-          , &#x27;browserify-shim&#x27; :  pack[&#x27;browserify-shim&#x27;]
+          , 'browserify-shim' :  pack['browserify-shim']
           , dependencies      :  pack.dependencies
         });
 
@@ -545,3 +538,4 @@ if (info.shim) {
     ]
 </div>
 </div>
+</body></html>

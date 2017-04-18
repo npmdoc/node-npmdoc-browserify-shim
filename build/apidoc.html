@@ -63,8 +63,44 @@
 
         <li>
 
+            <a class="apidocElementLiA" href="#apidoc.element.browserify-shim.browserify-shim">
+            function <span class="apidocSignatureSpan"></span>browserify-shim
+            <span class="apidocSignatureSpan">(file)</span>
+            </a>
+
+        </li>
+
+        <li>
+
             <a class="apidocElementLiA" href="#apidoc.element.browserify-shim.debug">
             function <span class="apidocSignatureSpan">browserify-shim.</span>debug
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.browserify-shim.parse_inline_shims">
+            function <span class="apidocSignatureSpan">browserify-shim.</span>parse_inline_shims
+            <span class="apidocSignatureSpan">(config)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.browserify-shim.resolve_shims">
+            function <span class="apidocSignatureSpan">browserify-shim.</span>resolve_shims
+            <span class="apidocSignatureSpan">(file, messages, cb)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.browserify-shim.toString">
+            function <span class="apidocSignatureSpan">browserify-shim.</span>toString
             <span class="apidocSignatureSpan">()</span>
             </a>
 
@@ -94,10 +130,99 @@
 
     </ol></li>
 
+    <li class="apidocModuleLi"><a href="#apidoc.module.browserify-shim.parse_inline_shims">module browserify-shim.parse_inline_shims</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.browserify-shim.parse_inline_shims.parse_inline_shims">
+            function <span class="apidocSignatureSpan">browserify-shim.</span>parse_inline_shims
+            <span class="apidocSignatureSpan">(config)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.browserify-shim.resolve_shims">module browserify-shim.resolve_shims</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.browserify-shim.resolve_shims.resolve_shims">
+            function <span class="apidocSignatureSpan">browserify-shim.</span>resolve_shims
+            <span class="apidocSignatureSpan">(file, messages, cb)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.browserify-shim.toString">module browserify-shim.toString</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.browserify-shim.toString.toString">
+            function <span class="apidocSignatureSpan">browserify-shim.</span>toString
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
 </ol></div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.browserify-shim" id="apidoc.module.browserify-shim">module browserify-shim</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.browserify-shim.browserify-shim" id="apidoc.element.browserify-shim.browserify-shim">
+        function <span class="apidocSignatureSpan"></span>browserify-shim
+        <span class="apidocSignatureSpan">(file)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function shim(file) {
+  var content = &#x27;&#x27;;
+  var stream = through(write, end);
+  return stream;
+
+  function write(buf) { content += buf; }
+  function end() {
+    var messages = [];
+    resolveShims(file, messages, function (err, info) {
+      if (err) {
+        stream.emit(&#x27;error&#x27;, err);
+        return stream.queue(null);
+      }
+
+      debug(&#x27;&#x27;);
+      debug.inspect({ file: file, info: info, messages: messages });
+
+      var eg = info.exposeGlobals;
+      if(eg &#x26;&#x26; Object.keys(eg)) {
+        content = exposify.expose(eg, content);
+      }
+
+      if (info.shim) {
+
+        // at this point we consider all remaining (not exposified) require statements to be invalid (why else are we shimming this
+)
+        content = rename(&#x27;require&#x27;, shimRequire, content);
+
+        var transformed = wrap(content, info.shim, info.packageDir, info.browser)
+        stream.queue(transformed);
+      } else {
+        stream.queue(content);
+      }
+
+      stream.queue(null);
+    });
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
 
 
     <h2>
@@ -109,6 +234,123 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function debug() {
   if (diagnostics) console.error.apply(console, arguments);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.browserify-shim.parse_inline_shims" id="apidoc.element.browserify-shim.parse_inline_shims">
+        function <span class="apidocSignatureSpan">browserify-shim.</span>parse_inline_shims
+        <span class="apidocSignatureSpan">(config)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parse_inline_shims = function (config) {
+  // all errors thrown are caught inside resolve-shims and passed back to browserify-shim
+  return Object.keys(config)
+    .reduce(function (acc, field) {
+      var conf = config[field];
+
+      // normalize two possible formats:
+      //    &#x22;key&#x22;: &#x22;export,
+      //    &#x22;key&#x22;: { &#x22;exports&#x22;: &#x22;export&#x22; .. }
+      if (typeof conf === &#x27;string&#x27;) conf = { exports: conf };
+
+      var exps = conf.exports &#x26;&#x26; conf.exports.length ? conf.exports.trim() : null;
+
+      acc[field.trim()] = {
+          exports: exps
+        , depends: parseDepends(conf.depends)
+      }
+
+      return acc;
+    }, {});
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.browserify-shim.resolve_shims" id="apidoc.element.browserify-shim.resolve_shims">
+        function <span class="apidocSignatureSpan">browserify-shim.</span>resolve_shims
+        <span class="apidocSignatureSpan">(file, messages, cb)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function resolveShims(file, messages, cb) {
+  // find the package.json that defines browserify-shim config for this file
+  mothership(file, function (pack) { return !! pack[&#x27;browserify-shim&#x27;] }, function (err, res) {
+    if (err) return cb(err);
+
+    if (!res || !res.pack) return cb(new Error(&#x27;Unable to find a browserify-shim config section in the package.json for &#x27; + file
+));
+
+    var pack       = res.pack;
+    var packFile   = res.path;
+    var packageDir = path.dirname(packFile);
+
+    // we cached this before which means it was also grouped by file
+    var cached = shimsCache[packageDir];
+    // if it was cached, that means any package fixes were applied as well
+    if (cached) {
+      return cb(null, {
+          package_json       :  packFile
+        , packageDir         :  packageDir
+        , resolvedPreviously :  true
+        , shim               :  shimsByPath[file]
+        , exposeGlobals      :  cached.exposeGlobals
+        , browser            :  pack.browser
+        , &#x27;browserify-shim&#x27;  :  pack[&#x27;browserify-shim&#x27;]
+        , dependencies       :  pack.dependencies
+      });
+    }
+
+      try {
+        pack = require(packFile);
+
+        var shimField = pack[&#x27;browserify-shim&#x27;];
+        if (!shimField) return cb(null, { package_json: packFile, shim: undefined });
+
+        var resolved = typeof shimField === &#x27;string&#x27;
+          ? resolveFromShimFile(packageDir, pack, shimField, messages)
+          : resolveInlineShims(packageDir, pack, shimField, messages);
+
+        messages.push({ resolved: resolved.shims });
+        updateCache(packageDir, pack, resolved.shims, resolved.exposeGlobals);
+
+        cb(null, {
+            package_json      :  packFile
+          , packageDir        :  packageDir
+          , shim              :  shimsByPath[file]
+          , exposeGlobals     :  resolved.exposeGlobals
+          , browser           :  pack.browser
+          , &#x27;browserify-shim&#x27; :  pack[&#x27;browserify-shim&#x27;]
+          , dependencies      :  pack.dependencies
+        });
+
+      } catch (err) {
+        console.trace();
+        return cb(err);
+      }
+    });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.browserify-shim.toString" id="apidoc.element.browserify-shim.toString">
+        function <span class="apidocSignatureSpan">browserify-shim.</span>toString
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">toString = function () {
+    return text;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -162,6 +404,136 @@ if(eg &#x26;&#x26; Object.keys(eg)) {
 
 if (info.shim) {
 ...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.browserify-shim.parse_inline_shims" id="apidoc.module.browserify-shim.parse_inline_shims">module browserify-shim.parse_inline_shims</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.browserify-shim.parse_inline_shims.parse_inline_shims" id="apidoc.element.browserify-shim.parse_inline_shims.parse_inline_shims">
+        function <span class="apidocSignatureSpan">browserify-shim.</span>parse_inline_shims
+        <span class="apidocSignatureSpan">(config)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parse_inline_shims = function (config) {
+  // all errors thrown are caught inside resolve-shims and passed back to browserify-shim
+  return Object.keys(config)
+    .reduce(function (acc, field) {
+      var conf = config[field];
+
+      // normalize two possible formats:
+      //    &#x22;key&#x22;: &#x22;export,
+      //    &#x22;key&#x22;: { &#x22;exports&#x22;: &#x22;export&#x22; .. }
+      if (typeof conf === &#x27;string&#x27;) conf = { exports: conf };
+
+      var exps = conf.exports &#x26;&#x26; conf.exports.length ? conf.exports.trim() : null;
+
+      acc[field.trim()] = {
+          exports: exps
+        , depends: parseDepends(conf.depends)
+      }
+
+      return acc;
+    }, {});
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.browserify-shim.resolve_shims" id="apidoc.module.browserify-shim.resolve_shims">module browserify-shim.resolve_shims</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.browserify-shim.resolve_shims.resolve_shims" id="apidoc.element.browserify-shim.resolve_shims.resolve_shims">
+        function <span class="apidocSignatureSpan">browserify-shim.</span>resolve_shims
+        <span class="apidocSignatureSpan">(file, messages, cb)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function resolveShims(file, messages, cb) {
+  // find the package.json that defines browserify-shim config for this file
+  mothership(file, function (pack) { return !! pack[&#x27;browserify-shim&#x27;] }, function (err, res) {
+    if (err) return cb(err);
+
+    if (!res || !res.pack) return cb(new Error(&#x27;Unable to find a browserify-shim config section in the package.json for &#x27; + file
+));
+
+    var pack       = res.pack;
+    var packFile   = res.path;
+    var packageDir = path.dirname(packFile);
+
+    // we cached this before which means it was also grouped by file
+    var cached = shimsCache[packageDir];
+    // if it was cached, that means any package fixes were applied as well
+    if (cached) {
+      return cb(null, {
+          package_json       :  packFile
+        , packageDir         :  packageDir
+        , resolvedPreviously :  true
+        , shim               :  shimsByPath[file]
+        , exposeGlobals      :  cached.exposeGlobals
+        , browser            :  pack.browser
+        , &#x27;browserify-shim&#x27;  :  pack[&#x27;browserify-shim&#x27;]
+        , dependencies       :  pack.dependencies
+      });
+    }
+
+      try {
+        pack = require(packFile);
+
+        var shimField = pack[&#x27;browserify-shim&#x27;];
+        if (!shimField) return cb(null, { package_json: packFile, shim: undefined });
+
+        var resolved = typeof shimField === &#x27;string&#x27;
+          ? resolveFromShimFile(packageDir, pack, shimField, messages)
+          : resolveInlineShims(packageDir, pack, shimField, messages);
+
+        messages.push({ resolved: resolved.shims });
+        updateCache(packageDir, pack, resolved.shims, resolved.exposeGlobals);
+
+        cb(null, {
+            package_json      :  packFile
+          , packageDir        :  packageDir
+          , shim              :  shimsByPath[file]
+          , exposeGlobals     :  resolved.exposeGlobals
+          , browser           :  pack.browser
+          , &#x27;browserify-shim&#x27; :  pack[&#x27;browserify-shim&#x27;]
+          , dependencies      :  pack.dependencies
+        });
+
+      } catch (err) {
+        console.trace();
+        return cb(err);
+      }
+    });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.browserify-shim.toString" id="apidoc.module.browserify-shim.toString">module browserify-shim.toString</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.browserify-shim.toString.toString" id="apidoc.element.browserify-shim.toString.toString">
+        function <span class="apidocSignatureSpan">browserify-shim.</span>toString
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function toString() { [native code] }</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
 
