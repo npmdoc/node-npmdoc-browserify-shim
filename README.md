@@ -1,9 +1,14 @@
-# api documentation for  [browserify-shim (v3.8.14)](https://github.com/thlorenz/browserify-shim#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-browserify-shim.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-browserify-shim) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-browserify-shim.svg)](https://travis-ci.org/npmdoc/node-npmdoc-browserify-shim)
+# npmdoc-browserify-shim
+
+#### api documentation for  [browserify-shim (v3.8.14)](https://github.com/thlorenz/browserify-shim#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-browserify-shim.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-browserify-shim) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-browserify-shim.svg)](https://travis-ci.org/npmdoc/node-npmdoc-browserify-shim)
+
 #### Makes CommonJS-incompatible modules browserifyable.
 
-[![NPM](https://nodei.co/npm/browserify-shim.png?downloads=true)](https://www.npmjs.com/package/browserify-shim)
+[![NPM](https://nodei.co/npm/browserify-shim.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/browserify-shim)
 
-[![apidoc](https://npmdoc.github.io/node-npmdoc-browserify-shim/build/screenCapture.buildNpmdoc.browser._2Fhome_2Ftravis_2Fbuild_2Fnpmdoc_2Fnode-npmdoc-browserify-shim_2Ftmp_2Fbuild_2Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-browserify-shim/build/apidoc.html)
+- [https://npmdoc.github.io/node-npmdoc-browserify-shim/build/apidoc.html](https://npmdoc.github.io/node-npmdoc-browserify-shim/build/apidoc.html)
+
+[![apidoc](https://npmdoc.github.io/node-npmdoc-browserify-shim/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-browserify-shim/build/apidoc.html)
 
 ![npmPackageListing](https://npmdoc.github.io/node-npmdoc-browserify-shim/build/screenCapture.npmPackageListing.svg)
 
@@ -18,7 +23,6 @@
 {
     "author": {
         "name": "Thorsten Lorenz",
-        "email": "thlorenz@gmx.de",
         "url": "thlorenz.com"
     },
     "bugs": {
@@ -63,12 +67,10 @@
     "main": "index.js",
     "maintainers": [
         {
-            "name": "thlorenz",
-            "email": "thlorenz@gmx.de"
+            "name": "thlorenz"
         },
         {
-            "name": "bendrucker",
-            "email": "bvdrucker@gmail.com"
+            "name": "bendrucker"
         }
     ],
     "name": "browserify-shim",
@@ -76,7 +78,6 @@
     "peerDependencies": {
         "browserify": ">= 2.3"
     },
-    "readme": "ERROR: No README data found!",
     "repository": {
         "type": "git",
         "url": "git://github.com/thlorenz/browserify-shim.git"
@@ -93,77 +94,6 @@
     },
     "version": "3.8.14"
 }
-```
-
-
-
-# <a name="apidoc.tableOfContents"></a>[table of contents](#apidoc.tableOfContents)
-
-#### [module browserify-shim](#apidoc.module.browserify-shim)
-1.  [function <span class="apidocSignatureSpan">browserify-shim.</span>debug ()](#apidoc.element.browserify-shim.debug)
-
-#### [module browserify-shim.debug](#apidoc.module.browserify-shim.debug)
-1.  [function <span class="apidocSignatureSpan">browserify-shim.</span>debug ()](#apidoc.element.browserify-shim.debug.debug)
-1.  [function <span class="apidocSignatureSpan">browserify-shim.debug.</span>inspect (obj, depth)](#apidoc.element.browserify-shim.debug.inspect)
-
-
-
-# <a name="apidoc.module.browserify-shim"></a>[module browserify-shim](#apidoc.module.browserify-shim)
-
-#### <a name="apidoc.element.browserify-shim.debug"></a>[function <span class="apidocSignatureSpan">browserify-shim.</span>debug ()](#apidoc.element.browserify-shim.debug)
-- description and source-code
-```javascript
-function debug() {
-  if (diagnostics) console.error.apply(console, arguments);
-}
-```
-- example usage
-```shell
-n/a
-```
-
-
-
-# <a name="apidoc.module.browserify-shim.debug"></a>[module browserify-shim.debug](#apidoc.module.browserify-shim.debug)
-
-#### <a name="apidoc.element.browserify-shim.debug.debug"></a>[function <span class="apidocSignatureSpan">browserify-shim.</span>debug ()](#apidoc.element.browserify-shim.debug.debug)
-- description and source-code
-```javascript
-function debug() {
-  if (diagnostics) console.error.apply(console, arguments);
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.browserify-shim.debug.inspect"></a>[function <span class="apidocSignatureSpan">browserify-shim.debug.</span>inspect (obj, depth)](#apidoc.element.browserify-shim.debug.inspect)
-- description and source-code
-```javascript
-inspect = function (obj, depth) {
-  if (diagnostics) console.error(inspect(obj, depth));
-}
-```
-- example usage
-```shell
-...
-    resolveShims(file, messages, function (err, info) {
-if (err) {
-  stream.emit('error', err);
-  return stream.queue(null);
-}
-
-debug('');
-debug.inspect({ file: file, info: info, messages: messages });
-
-var eg = info.exposeGlobals;
-if(eg && Object.keys(eg)) {
-  content = exposify.expose(eg, content);
-}
-
-if (info.shim) {
-...
 ```
 
 
