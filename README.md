@@ -1,6 +1,6 @@
 # npmdoc-browserify-shim
 
-#### api documentation for  [browserify-shim (v3.8.14)](https://github.com/thlorenz/browserify-shim#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-browserify-shim.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-browserify-shim) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-browserify-shim.svg)](https://travis-ci.org/npmdoc/node-npmdoc-browserify-shim)
+#### basic api documentation for  [browserify-shim (v3.8.14)](https://github.com/thlorenz/browserify-shim#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-browserify-shim.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-browserify-shim) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-browserify-shim.svg)](https://travis-ci.org/npmdoc/node-npmdoc-browserify-shim)
 
 #### Makes CommonJS-incompatible modules browserifyable.
 
@@ -92,7 +92,8 @@
         "test": "test-peer-range browserify",
         "test-main": "tap test/*.js && tap test/shim/*.js"
     },
-    "version": "3.8.14"
+    "version": "3.8.14",
+    "bin": {}
 }
 ```
 
